@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'scalablepress/ruby/version'
+require 'scalablepress/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "scalablepress-ruby"
-  spec.version       = Scalablepress::Ruby::VERSION
+  spec.version       = Scalablepress::VERSION
   spec.authors       = ["James Dullaghan"]
-  spec.email         = ["james@fldlvl.com"]
+  spec.email         = ["james@pandodev.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  spec.summary       = %q{Scalablepress Ruby Wrapper}
+  spec.description   = %q{Ruby bindings for the Scalablepress API}
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = "MIT"
 
@@ -29,4 +29,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.9"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "minitest"
+  spec.add_dependency "httparty"
 end
