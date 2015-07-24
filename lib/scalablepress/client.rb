@@ -8,10 +8,6 @@ module Scalablepress
       @base_url = 'https://api.scalablepress.com/v2'
     end
 
-    # def catagories
-    #   Scalablepress::Service::Catagory.new(self)
-    # end
-
     def products
       Scalablepress::Service::Product.new(self)
     end

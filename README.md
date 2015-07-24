@@ -22,7 +22,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+  client = Scalablepress::Client.new(api_key: 'your-api-key-goes-here')
+  # List all product categories
+  client.products.categories
+  # List products (in a category)
+  client.products.categories(id: 'sweatshirt')
+  # List a specific products information
+  client.products.info(id: 'gildan-sweatshirt-crew')
+  # List a products availability
+  client.products.availability(id: 'gildan-sweatshirt-crew')
+  # List detailed item information
+```
 
 ## Development
 

@@ -3,20 +3,21 @@ module Scalablepress
     attr_accessor :client,
                   :base_url,
                   :collection_name,
-                  :object_id,
                   :query_params
 
     def initialize(args)
       @client = args.fetch(:client)
       @base_url = @client.base_url
       @collection_name = args.fetch(:collection_name)
-      @object_id = args.fetch(:object_id) { nil }
       @query_params = args.fetch(:query_params) { { } }
+
     end
 
     def path
-      if object_id
-        "#{base_url}/#{collection_name}/#{object_id}"
+      if query_params.has_key?(:id) && query_params.has_key?(:custom_path)
+        "#{base_url}/#{collection_name}/#{query_params[:id]}/#{query_params[:custom_path]}"
+      elsif query_params.has_key?(:id)
+        "#{base_url}/#{collection_name}/#{query_params[:id]}"
       else
         "#{base_url}/#{collection_name}"
       end
