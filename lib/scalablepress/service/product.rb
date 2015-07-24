@@ -6,60 +6,45 @@ module Scalablepress
       # /v2/categories
       # /v2/categories/:id
       def categories(params={})
-        collection_name = Utils.resource_class_to_collection_name(category_class)
-        @client.get(
-          Scalablepress::RequestUri.new(
-            client: @client,
-            collection_name: collection_name,
-            query_params: params
-          )
-        )
+        build_get_request(category_class, params)
       end
 
       # List product information
       # /v2/products/:id
       def info(params={})
-        collection_name = Utils.resource_class_to_collection_name(product_class)
-        @client.get(
-          Scalablepress::RequestUri.new(
-            client: @client,
-            collection_name: collection_name,
-            query_params: params
-          )
-        )
+        build_get_request(product_class, params)
       end
 
       # List product availability
       # /v2/products/:id/availability
       def availability(params={})
-        collection_name = Utils.resource_class_to_collection_name(product_class)
         params = params.merge({ custom_path: 'availability' })
-        @client.get(
-          Scalablepress::RequestUri.new(
-            client: @client,
-            collection_name: collection_name,
-            query_params: params
-          )
-        )
+        build_get_request(product_class, params)
       end
 
       # List specific product details
       # /v2/products/:id/items
       def details(params = {})
-        collection_name = Utils.resource_class_to_collection_name(product_class)
         params = params.merge({ custom_path: 'items' })
+        build_get_request(product_class, params)
+      end
+
+      def build_get_request(klass, params)
         @client.get(
           Scalablepress::RequestUri.new(
             client: @client,
-            collection_name: collection_name,
+            collection_name: collection_name(klass),
             query_params: params
           )
         )
       end
 
+      def collection_name(klass)
+        Utils.resource_class_to_collection_name(klass)
+      end
 
-# List product availability
-# List detailed item information
+      # List product availability
+      # List detailed item information
 
       # def make_request(klass)
       #   collection_name = Utils.resource_class_to_collection_name(klass)

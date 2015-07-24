@@ -22,6 +22,8 @@ Or install it yourself as:
 
 ## Usage
 
+#### Products & Categories
+
 ```ruby
   client = Scalablepress::Client.new(api_key: 'your-api-key-goes-here')
   # List all product categories
@@ -33,6 +35,7 @@ Or install it yourself as:
   # List a products availability
   client.products.availability(id: 'gildan-sweatshirt-crew')
   # List detailed item information
+  client.products.
 ```
 
 ## Development
