@@ -1,6 +1,11 @@
 require 'scalablepress/version'
 require 'scalablepress/client'
-require 'scalablepress/product/product'
+require 'scalablepress/request'
+require 'scalablepress/request_uri'
+require 'scalablepress/utils'
+require 'scalablepress/service/base_service'
+require 'scalablepress/service/product'
+require 'scalablepress/service/category'
 require 'json'
 
 ##

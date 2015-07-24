@@ -8,8 +8,30 @@ module Scalablepress
       @base_url = 'https://api.scalablepress.com/v2'
     end
 
-    def auth
-      { basic_auth: { username: '', password: api_key } }
+    # def catagories
+    #   Scalablepress::Service::Catagory.new(self)
+    # end
+
+    def products
+      Scalablepress::Service::Product.new(self)
+    end
+
+    def get(request_uri)
+      request_class.get(request_uri)
+    end
+
+    def post(request_uri)
+      request_class.post(request_uri)
+    end
+
+    def delete(request_uri)
+      request_class.delete(request_uri)
+    end
+
+    private
+
+    def request_class
+      Scalablepress::Request
     end
   end
 end
