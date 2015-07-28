@@ -29,32 +29,6 @@ module Scalablepress
         build_get_request(product_class, params)
       end
 
-      def build_get_request(klass, params)
-        @client.get(
-          Scalablepress::RequestUri.new(
-            client: @client,
-            collection_name: collection_name(klass),
-            query_params: params
-          )
-        )
-      end
-
-      def collection_name(klass)
-        Utils.resource_class_to_collection_name(klass)
-      end
-
-      # List product availability
-      # List detailed item information
-
-      # def make_request(klass)
-      #   collection_name = Utils.resource_class_to_collection_name(klass)
-      #   if params[:id]
-      #     @client.get("#{@client.base_url}/#{collection_name}/#{params[:id]}", {})
-      #   else
-      #     @client.get("#{@clinet.base_url}/#{collection_name}", params)
-      #   end
-      # end
-
       def category_class
         Scalablepress::Service::Category
       end

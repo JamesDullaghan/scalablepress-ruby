@@ -12,6 +12,10 @@ module Scalablepress
       Scalablepress::Service::Product.new(self)
     end
 
+    def quotes
+      Scalablepress::Service::Quote.new(self)
+    end
+
     def get(request_uri)
       request_class.get(request_uri)
     end

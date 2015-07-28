@@ -5,6 +5,8 @@ require 'scalablepress/request_uri'
 require 'scalablepress/utils'
 require 'scalablepress/service/base_service'
 require 'scalablepress/service/product'
+require 'scalablepress/service/category'
+require 'scalablepress/service/quote'
 require 'json'
 
 ##

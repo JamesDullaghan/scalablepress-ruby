@@ -10,7 +10,6 @@ module Scalablepress
       @base_url = @client.base_url
       @collection_name = args.fetch(:collection_name)
       @query_params = args.fetch(:query_params) { { } }
-
     end
 
     def path
@@ -24,11 +23,15 @@ module Scalablepress
     end
 
     def post_params
-      query_params_with_auth.merge(json_header)
+      query_params_with_auth
     end
 
     def query_params_with_auth
-      query_params.merge(auth)
+      {
+        "body" => [query_params].to_json,
+        "basic_auth" => auth,
+        "headers" => json_header
+      }
     end
 
     alias_method :get_params, :query_params_with_auth
@@ -37,16 +40,11 @@ module Scalablepress
     private
 
     def auth
-      {
-        basic_auth: {
-          username: '',
-          password: client.api_key
-        }
-      }
+      { "username" => "", "password" => client.api_key.to_s }
     end
 
     def json_header
-      { headers: { "Content-Type" => "application/json" } }
+      { "Content-Type" => "application/json", "Accept" => 'application/json' }
     end
   end
 end

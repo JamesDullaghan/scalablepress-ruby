@@ -35,7 +35,8 @@ Or install it yourself as:
   # List a products availability
   client.products.availability(id: 'gildan-sweatshirt-crew')
   # List detailed item information
-  client.products.
+  # this endpoint rejects the api credentials
+  client.products.details(id: 'gildan-sweatshirt-crew')
 ```
 
 ## Development

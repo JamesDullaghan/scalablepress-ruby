@@ -20,6 +20,7 @@ module Scalablepress
     end
 
     def self.post(request_uri)
+      binding.pry
       new(
         request_uri.path,
         HTTParty.post(request_uri.path, request_uri.post_params)
@@ -34,3 +35,21 @@ module Scalablepress
     end
   end
 end
+
+
+
+{
+  "type"=>"dtg",
+  "products"=> {
+    "id"=>"gildan-sweatshirt-crew",
+    "color"=>"ash",
+    "quantity"=>"12"
+  },
+  "address"=> {
+    "name"=>"My customer",
+    "address1"=>"123 Scalable Drive.",
+    "city"=>"West Pressfield"
+  },
+ "basic_auth"=>{"username"=>"", "password"=>"test_V_ip47s_XBdD_O5-mYs1WA"},
+ "headers"=>{"Content-Type"=>"application/json"}
+}
