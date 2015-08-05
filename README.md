@@ -1,10 +1,19 @@
-# Scalablepress::Ruby
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/scalablepress/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# Scalablepress Ruby Bindings
+[![Circle CI](https://circleci.com/gh/JamesDullaghan/scalablepress-ruby.svg?style=svg)](https://circleci.com/gh/JamesDullaghan/scalablepress-ruby)
 
 ## Installation
+
+You don't need this source code unless you want to modify the gem. If you just want to use the Stripe Ruby bindings, you should run:
+
+```ruby
+  gem install scalablepress-ruby
+```
+
+if you want to build the gem from source:
+
+```ruby
+  gem build scalablepress-ruby.gemspec
+```
 
 Add this line to your application's Gemfile:
 
@@ -12,23 +21,29 @@ Add this line to your application's Gemfile:
 gem 'scalablepress-ruby'
 ```
 
-And then execute:
+### Bundler
 
-    $ bundle
+If you are installing via bundler, you should be sure to use the https rubygems source in your Gemfile, as any gems fetched over http could potentially be compromised in transit and alter the code of gems fetched securely over https:
 
-Or install it yourself as:
-
-    $ gem install scalablepress-ruby
+```ruby
+  source 'https://rubygems.org'
+```
 
 ## Usage
 
 TODO: Write usage instructions here
 
-## Development
+## Documentation
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `bin/console` for an interactive prompt that will allow you to experiment.
+**link to docs goes here...**
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release` to create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+### Development
+
+Test cases can be run with:
+
+```powershell
+  bundle exec rake test
+```
 
 ## Contributing
 
