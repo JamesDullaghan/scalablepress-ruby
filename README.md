@@ -31,7 +31,22 @@ If you are installing via bundler, you should be sure to use the https rubygems 
 
 ## Usage
 
-TODO: Write usage instructions here
+#### Products & Categories
+
+```ruby
+  client = Scalablepress::Client.new(api_key: 'your-api-key-goes-here')
+  # List all product categories
+  client.products.categories
+  # List products (in a category)
+  client.products.categories(id: 'sweatshirt')
+  # List a specific products information
+  client.products.info(id: 'gildan-sweatshirt-crew')
+  # List a products availability
+  client.products.availability(id: 'gildan-sweatshirt-crew')
+  # List detailed item information
+  # this endpoint rejects the api credentials
+  client.products.details(id: 'gildan-sweatshirt-crew')
+```
 
 ## Documentation
 
