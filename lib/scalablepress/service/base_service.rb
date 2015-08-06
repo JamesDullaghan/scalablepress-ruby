@@ -1,3 +1,5 @@
+require 'pry'
+
 module Scalablepress
   module Service
     class BaseService
@@ -7,40 +9,36 @@ module Scalablepress
         @client = client
       end
 
-      def build_get_request(klass, params)
-        client.get(request_url(klass, params))
+      def build_get_request(url)
+        client.get(url).response
       end
 
-      def build_post_request(klass, params)
-        client.post(request_url(klass, params), { params: params })
+      def build_post_request(url)
+        client.post(url, { params: params }).response
       end
 
-      def build_delete_request(klass, params)
-        client.delete(request_url(klass, params), {params: params})
+      def build_delete_request(url)
+        client.delete(url, { params: params }).response
+      end
+
+      protected
+
+      def request_url(klass, params, collection=true)
+        url = Scalablepress::RequestParams.new({
+          klass: klass,
+          params: params,
+          collection: collection
+        }).url
+        "#{client.base_url}/#{url}"
       end
 
       private
 
-      # Returns class name as collection name
-      #
-      # @return [<String>]
-      def collection_name(klass)
-        Utils.resource_class_to_collection_name(klass)
-      end
-
-      def singular_name(klass)
-        Utils.resource_class_to_singular_name(klass)
-      end
-
-      # Build the request uri
-      def request_url(klass, params)
-        collection = collection_name(klass)
-        if params.has_key?(:id) && params.has_key?(:custom_path)
-          "#{client.base_url}/#{collection}/#{params[:id]}/#{params[:custom_path]}"
-        elsif params.has_key?(:id)
-          "#{client.base_url}/#{collection}/#{params[:id]}"
+      def klass_name(klass, collection=true)
+        if collection
+          Utils.resource_class_to_collection_name(klass)
         else
-          "#{client.base_url}/#{collection}"
+          Utils.resource_class_to_singular_name(klass)
         end
       end
     end
