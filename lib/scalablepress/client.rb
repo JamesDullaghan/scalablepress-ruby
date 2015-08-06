@@ -1,11 +1,14 @@
 module Scalablepress
   class Client
-    attr_reader :api_key, :base_url
+    attr_reader :api_key
 
     # Initialize a Scalablepress object with an api_key
     def initialize(api_key: 'enter-api-key')
       @api_key = api_key
-      @base_url = 'https://api.scalablepress.com/v2'
+    end
+
+    def base_url
+      @base_url ||= "https://:#{api_key}@api.scalablepress.com/v2"
     end
 
     def products
@@ -16,16 +19,16 @@ module Scalablepress
       Scalablepress::Service::Quote.new(self)
     end
 
-    def get(request_uri)
-      request_class.get(request_uri)
+    def get(request_url)
+      Scalablepress::Request.get(request_url)
     end
 
-    def post(request_uri)
-      request_class.post(request_uri)
+    def post(request_url, payload)
+      Scalablepress::Request.post(request_url, payload)
     end
 
-    def delete(request_uri)
-      request_class.delete(request_uri)
+    def delete(request_url)
+      Scalablepress::Request.delete(request_url)
     end
 
     private

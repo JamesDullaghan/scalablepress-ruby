@@ -1,13 +1,14 @@
+require 'rest-client'
+require 'json'
+
+# Version
 require 'scalablepress/version'
 require 'scalablepress/client'
 require 'scalablepress/request'
-require 'scalablepress/request_uri'
 require 'scalablepress/utils'
 require 'scalablepress/service/base_service'
 require 'scalablepress/service/product'
-require 'scalablepress/service/category'
 require 'scalablepress/service/quote'
-require 'json'
 
 ##
 # Scalable Press is a vertically integrated print and fulfillment service
