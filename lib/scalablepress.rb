@@ -10,14 +10,15 @@ require 'scalablepress/utils'
 require 'scalablepress/service/base_service'
 require 'scalablepress/service/product'
 require 'scalablepress/service/quote'
+require 'scalablepress/service/order'
+require 'scalablepress/service/reship'
+require 'scalablepress/service/design'
 
 ##
 # Scalable Press is a vertically integrated print and fulfillment service
 #
-# This library provides ruby bindings for the Scalable Press API (https://scalablepress.com/docs/)
+# This library provides ruby bindings for the Scalable Press API
+# Docs can be found here:
+# https://scalablepress.com/docs/
 module Scalablepress
-  # client = Scalablepress::Client.new(api_key: 'test_V_ip47s_XBdD_O5-mYs1WA')
-
-  # response = client.products
-  # puts response
 end
