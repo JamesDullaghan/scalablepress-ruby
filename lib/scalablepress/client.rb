@@ -19,6 +19,18 @@ module Scalablepress
       Scalablepress::Service::Quote.new(self)
     end
 
+    def order
+      Scalablepress::Service::Order.new(self)
+    end
+
+    def reship
+      Scalablepress::Service::Reship.new(self)
+    end
+
+    def designs
+      Scalablepress::Service::Design.new(self)
+    end
+
     def get(request_url)
       Scalablepress::Request.get(request_url)
     end

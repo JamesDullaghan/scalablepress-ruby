@@ -33,6 +33,8 @@ If you are installing via bundler, you should be sure to use the https rubygems 
 
 #### Products & Categories
 
+All methods are named after their respective endpoints. The API isn't restful, so some urls are tricky to handle.
+
 ```ruby
   client = Scalablepress::Client.new(api_key: 'your-api-key-goes-here')
   # List all product categories
@@ -45,7 +47,7 @@ If you are installing via bundler, you should be sure to use the https rubygems 
   client.products.availability(id: 'gildan-sweatshirt-crew')
   # List detailed item information
   # In order to use this endpoint, you must authorize your api key by emailing api@scalablepress.com
-  client.products.details(id: 'gildan-sweatshirt-crew')
+  client.products.detailed_info(id: 'gildan-sweatshirt-crew')
 ```
 
 ## Documentation

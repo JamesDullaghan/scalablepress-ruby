@@ -6,37 +6,39 @@ module Scalablepress
       # /v2/categories
       # /v2/categories/:id
       def categories(params={})
-        @categories ||= build_get_request(category_class, params)
+        @categories ||= build_get_request(request_url(category_class, params))
       end
 
       # List product information
       # /v2/products/:id
-      def all(params={})
-        @products ||= build_get_request(product_class, params)
+      def info(params={})
+        @products ||= build_get_request(request_url(product_class, params))
       end
 
       # List product availability
       # /v2/products/:id/availability
       def availability(params={})
-        params = params.merge({ custom_path: 'availability' })
-        @availability ||= build_get_request(product_class, params)
+        params = params.merge({ non_restful_path: 'availability' })
+        @availability ||= build_get_request(request_url(product_class, params))
       end
 
       # List specific product details
       # /v2/products/:id/items
-      def find(params = {})
-        params = params.merge({ custom_path: 'items' })
-        @details ||= build_get_request(product_class, params)
+      def detailed_info(params = {})
+        params = params.merge({ non_restful_path: 'items' })
+        @details ||= build_get_request(request_url(product_class, params))
       end
 
+      private
+
+      # ClassName used for categories
       def category_class
         "Category"
-        # Scalablepress::Service::Category
       end
 
+      # ClassName used for products
       def product_class
         "Product"
-        # Scalablepress::Service::Product
       end
     end
   end
