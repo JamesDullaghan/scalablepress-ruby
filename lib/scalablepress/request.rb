@@ -1,55 +1,53 @@
-require 'pry'
-require 'httparty'
-
 module Scalablepress
   class Request
-    include HTTParty
+    # DEFAULT_HEADERS = {
+    #   "Content-Type" => "application/json",
+    #   "Accept" => "application/json"
+    # }
+
+    DEFAULT_HEADERS = {
+      content_type: :json,
+      accept: :json
+    }
 
     attr_accessor :path, :response
 
     def initialize(path, response)
       self.path = path
-      self.response = response
+      self.response = JSON.parse(response)
     end
+    # Restclient.http_method
+    # url needs http://username:password@url.com
+    # url, headers, payload
+    # url, headers, payload, block if post
 
-    def self.get(request_uri)
+    def self.get(request_url)
       new(
-        request_uri.path,
-        HTTParty.get(request_uri.path, request_uri.get_params).parsed_response
+        request_url,
+        execute_request(:get, request_url)
       )
     end
 
-    def self.post(request_uri)
-      binding.pry
+    def self.post(request_url, payload)
       new(
-        request_uri.path,
-        HTTParty.post(request_uri.path, request_uri.post_params)
+        request_url,
+        execute_request(:post, request_url, payload)
       )
     end
 
-    def self.delete(request_uri)
+    def self.delete(request_url, payload)
       new(
-        request_uri.path,
-        HTTParty.delete(request_uri.path, request_uri.delete_params)
+        request_url,
+        execute_request(:delete, request_url, payload)
       )
+    end
+
+    def execute_request(http_method, url, payload={})
+      RestClient::Request.new(
+        method: method.to_sym,
+        url: request_url,
+        headers: DEFAULT_HEADERS.merge(payload)
+      ).execute
     end
   end
 end
-
-
-
-{
-  "type"=>"dtg",
-  "products"=> {
-    "id"=>"gildan-sweatshirt-crew",
-    "color"=>"ash",
-    "quantity"=>"12"
-  },
-  "address"=> {
-    "name"=>"My customer",
-    "address1"=>"123 Scalable Drive.",
-    "city"=>"West Pressfield"
-  },
- "basic_auth"=>{"username"=>"", "password"=>"test_V_ip47s_XBdD_O5-mYs1WA"},
- "headers"=>{"Content-Type"=>"application/json"}
-}

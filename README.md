@@ -44,7 +44,7 @@ If you are installing via bundler, you should be sure to use the https rubygems 
   # List a products availability
   client.products.availability(id: 'gildan-sweatshirt-crew')
   # List detailed item information
-  # this endpoint rejects the api credentials
+  # In order to use this endpoint, you must authorize your api key by emailing api@scalablepress.com
   client.products.details(id: 'gildan-sweatshirt-crew')
 ```
 
