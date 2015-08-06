@@ -21,7 +21,6 @@ module Scalablepress
         @delete ||= build_delete_request(request_url(design_class, params, false))
       end
 
-
       private
 
       def design_class

@@ -127,7 +127,7 @@ All methods are named after their respective endpoints. The API isn't restful, s
 Test cases can be run with:
 
 ```powershell
-  bundle exec rake test
+  bundle exec rake spec
 ```
 
 ## Contributing
