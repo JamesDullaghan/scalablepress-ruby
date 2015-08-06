@@ -1,10 +1,5 @@
 module Scalablepress
   class Request
-    # DEFAULT_HEADERS = {
-    #   "Content-Type" => "application/json",
-    #   "Accept" => "application/json"
-    # }
-
     DEFAULT_HEADERS = {
       content_type: :json,
       accept: :json
@@ -16,10 +11,6 @@ module Scalablepress
       self.path = path
       self.response = JSON.parse(response)
     end
-    # Restclient.http_method
-    # url needs http://username:password@url.com
-    # url, headers, payload
-    # url, headers, payload, block if post
 
     def self.get(request_url)
       new(
@@ -42,10 +33,10 @@ module Scalablepress
       )
     end
 
-    def execute_request(http_method, url, payload={})
+    def self.execute_request(http_method, url, payload={})
       RestClient::Request.new(
-        method: method.to_sym,
-        url: request_url,
+        method: http_method.to_sym,
+        url: url,
         headers: DEFAULT_HEADERS.merge(payload)
       ).execute
     end

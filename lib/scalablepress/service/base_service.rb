@@ -28,6 +28,10 @@ module Scalablepress
         Utils.resource_class_to_collection_name(klass)
       end
 
+      def singular_name(klass)
+        Utils.resource_class_to_singular_name(klass)
+      end
+
       # Build the request uri
       def request_url(klass, params)
         collection = collection_name(klass)
