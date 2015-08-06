@@ -16,7 +16,7 @@ module Scalablepress
       # POST /v2/quote/bulk
       def bulk(params={})
         params = params.merge({ custom_path: 'bulk' })
-        @bulk ||= build_post_request(request_url(quote_class, params, false))
+        @bulk ||= standard(params)
       end
 
       private

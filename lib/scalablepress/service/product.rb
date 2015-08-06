@@ -11,7 +11,7 @@ module Scalablepress
 
       # List product information
       # /v2/products/:id
-      def info(params={})
+      def find(params={})
         @products ||= build_get_request(request_url(product_class, params))
       end
 
@@ -19,14 +19,14 @@ module Scalablepress
       # /v2/products/:id/availability
       def availability(params={})
         params = params.merge({ non_restful_path: 'availability' })
-        @availability ||= build_get_request(request_url(product_class, params))
+        @availability ||= find(params)
       end
 
       # List specific product details
       # /v2/products/:id/items
-      def detailed_info(params = {})
+      def find_with_details(params = {})
         params = params.merge({ non_restful_path: 'items' })
-        @details ||= build_get_request(request_url(product_class, params))
+        @find_with_details ||= find(params)
       end
 
       private
